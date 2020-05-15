@@ -11,6 +11,7 @@ import (
   "time"
   "io/ioutil"
   "unsafe"
+  "path"
 )
 
 func GetAllFile(pathname string) []string {
@@ -26,8 +27,11 @@ func GetAllFile(pathname string) []string {
       // fmt.Printf("[%s]\n", pathname+"/"+fi.Name())
       GetAllFile(strings.Join([]string{pathname, fi.Name(), "/"}, ""))
     } else {
-      // fmt.Println(pathname+"/"+fi.Name())
-      a = append(a,strings.Join([]string{pathname, fi.Name()}, "/"))
+      var fileSuffix string
+      fileSuffix = path.Ext(fi.Name())
+      if fileSuffix == ".jpg" || fileSuffix == ".jpeg" {
+        a = append(a,strings.Join([]string{pathname, fi.Name()}, "/"))
+      }
     }
   }
   // fmt.Println(a)
