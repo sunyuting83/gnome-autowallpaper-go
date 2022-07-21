@@ -135,7 +135,7 @@ func setWallpaper(path string) {
 	// 设置壁纸
 	dorn := "picture-uri-dark"
 	if now {
-		dorn = "picture-dark"
+		dorn = "picture-uri"
 	}
 	cmd := exec.Command("gsettings", "set", "org.gnome.desktop.background", dorn, path)
 	if err := cmd.Run(); err != nil {
